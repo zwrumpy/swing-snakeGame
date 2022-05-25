@@ -6,12 +6,6 @@ import javax.swing.*;
 import java.util.Random;
 
 public class GamePanel extends JPanel implements ActionListener{
-
-
-    /**
-     *
-     */
-
     // private static final long serialVersionUID = 1L;
     static final int SCREEN_WIDTH = 600;
     static final int SCREEN_HEIGHT = 600;
@@ -19,8 +13,8 @@ public class GamePanel extends JPanel implements ActionListener{
     static final int GAME_UNIT = (SCREEN_WIDTH*SCREEN_HEIGHT)/UNIT_SIZE;
     static final int DELAY = 75;
 
-    final int x[] = new int[GAME_UNIT];
-    final int y[]  =new int[GAME_UNIT];
+    final int[] x = new int[GAME_UNIT];
+    final int[] y =new int[GAME_UNIT];
 
     int bodyParts = 6;
     int foodAte;
@@ -82,19 +76,11 @@ public class GamePanel extends JPanel implements ActionListener{
             x[i] = x[i-1]; 
             y[i] = y[i-1]; 
         }
-        switch(direction){
-            case 'U':
-                y[0] = y[0] - UNIT_SIZE;
-                break;
-            case 'D':
-                y[0] = y[0] + UNIT_SIZE;
-                break;
-            case 'L':
-                x[0] = x[0] - UNIT_SIZE;
-                break;
-            case 'R':
-                x[0] = x[0] + UNIT_SIZE;
-                break;
+        switch (direction) {
+            case 'U' -> y[0] = y[0] - UNIT_SIZE;
+            case 'D' -> y[0] = y[0] + UNIT_SIZE;
+            case 'L' -> x[0] = x[0] - UNIT_SIZE;
+            case 'R' -> x[0] = x[0] + UNIT_SIZE;
         }
     }
     public void newFood(){
@@ -109,13 +95,13 @@ public class GamePanel extends JPanel implements ActionListener{
         }
     }
     public void checkCollision() {
-        //check the collesion with body
+        //check the collision with body
         for(int i= bodyParts; i>0; i--){
             if((x[0] == x[i])&&y[0]==y[i]){
                 running = false;
             }
         }
-        //check if the head touchs border
+        //check if the head  touches border
         if(x[0]<0){
             running = false;
         }
