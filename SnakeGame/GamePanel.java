@@ -13,8 +13,8 @@ public class GamePanel extends JPanel implements ActionListener{
     static final int GAME_UNIT = (SCREEN_WIDTH*SCREEN_HEIGHT)/UNIT_SIZE;
     static final int DELAY = 75;
 
-    final int x[] = new int[GAME_UNIT];
-    final int y[]  =new int[GAME_UNIT];
+    final int[] x = new int[GAME_UNIT];
+    final int[] y =new int[GAME_UNIT];
 
     int bodyParts = 6;
     int foodAte;
@@ -87,8 +87,8 @@ public class GamePanel extends JPanel implements ActionListener{
     }
 
     public void newFood(){
-        foodX =random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE;
-        foodY =random.nextInt((int)(SCREEN_HEIGHT/UNIT_SIZE))*UNIT_SIZE;
+        foodX =random.nextInt(SCREEN_WIDTH/UNIT_SIZE)*UNIT_SIZE;
+        foodY =random.nextInt(SCREEN_HEIGHT/UNIT_SIZE)*UNIT_SIZE;
     }
 
     public void checkFood(){
@@ -100,13 +100,14 @@ public class GamePanel extends JPanel implements ActionListener{
     }
 
     public void checkCollision() {
-        //check the collesion with body
+        //check the collision with body
         for(int i= bodyParts; i>0; i--){
-            if((x[0] == x[i])&&y[0]==y[i]){
+            if ((x[0] == x[i]) && y[0] == y[i]) {
                 running = false;
+                break;
             }
         }
-        //check if the head touchs border
+        //check if the head touches border
         if(x[0]<0){
             running = false;
         }
