@@ -165,7 +165,7 @@ public class GamePanel extends JPanel implements ActionListener{
                 case KeyEvent.VK_LEFT:
                     if(direction!='R') {
                         if (direction != 'L') {
-                            Sound.playMusic(soundFolder +"f.wav");
+                            Sound.playMusic(soundFolder +"a.wav");
                         }
                         direction = 'L';
                     }
@@ -173,7 +173,7 @@ public class GamePanel extends JPanel implements ActionListener{
                 case KeyEvent.VK_RIGHT:
                     if(direction!='L') {
                         if (direction != 'R') {
-                            Sound.playMusic(soundFolder +"a.wav");
+                            Sound.playMusic(soundFolder +"g.wav");
                         }
                         direction = 'R';
                     }

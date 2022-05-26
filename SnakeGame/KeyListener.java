@@ -20,7 +20,7 @@ public class KeyListener extends KeyAdapter {
             case KeyEvent.VK_LEFT:
                 if(direction!='R') {
                     if (direction != 'L') {
-                        Sound.playMusic( soundFolder+"f.wav");
+                        Sound.playMusic( soundFolder+"g.wav");
                     }
                     direction = 'L';
                 }
