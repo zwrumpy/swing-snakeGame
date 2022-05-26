@@ -43,6 +43,7 @@ public class GamePanel extends JPanel implements ActionListener{
         running = true;
         timer = new Timer(DELAY, this);
         timer.start();
+        Sound.playLoop(soundFolder+"loop.wav");
     }
 
     public void paintComponent(Graphics g) {
@@ -56,7 +57,9 @@ public class GamePanel extends JPanel implements ActionListener{
             drawBody(g);
             drawScore(g);
         }
-        else{ gameOver(g); }
+        else{
+            gameOver(g);
+        }
     }
 
     public void drawFood(Graphics g){
@@ -67,10 +70,13 @@ public class GamePanel extends JPanel implements ActionListener{
     public void drawBody(Graphics g){
         for(int i = 0; i<bodyParts; i++){
             if(i == 0){
+                int headSize = (UNIT_SIZE);
+                int headX = x[i];
+                int headY = y[i];
                 g.setColor(Color.GREEN);
-                g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
-            }else{
-                g.setColor(new Color(45, 100, 0));
+                g.fillRect(headX, headY, headSize, headSize);
+            } else {
+                g.setColor(new Color(45, 90, 0));
                 g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
             }
         }
@@ -79,7 +85,7 @@ public class GamePanel extends JPanel implements ActionListener{
     public void drawScore(Graphics g){
         g.setColor(Color.WHITE);
         g.setFont(new Font("Dialog", Font.BOLD, 30));
-        FontMetrics metrics  =getFontMetrics(g.getFont());
+        FontMetrics metrics = getFontMetrics(g.getFont());
         g.drawString("Score: "+foodAte, (SCREEN_WIDTH-metrics.stringWidth("SCORE: "+foodAte))/2, g.getFont().getSize());
     }
 
@@ -112,7 +118,7 @@ public class GamePanel extends JPanel implements ActionListener{
 
     public void checkCollision() {
         //check the collision with body
-        for(int i= bodyParts; i>0; i--){
+        for(int i = bodyParts; i > 0; i--){
             if ((x[0] == x[i]) && y[0] == y[i]) {
                 running = false;
                 break;
@@ -144,7 +150,7 @@ public class GamePanel extends JPanel implements ActionListener{
         g.setColor(Color.WHITE);
         g.setFont(new Font("dialog", Font.BOLD, 15));
         FontMetrics metrics  =getFontMetrics(g.getFont());
-        g.drawString("GameOver!", (SCREEN_WIDTH-metrics.stringWidth("GameOver!"))/2, SCREEN_HEIGHT/2);
+        g.drawString("Game Over!", (SCREEN_WIDTH-metrics.stringWidth("Game Over!"))/2, SCREEN_HEIGHT/2);
     }
 
     @Override
